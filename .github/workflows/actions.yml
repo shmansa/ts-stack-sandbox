@@ -12,4 +12,4 @@ jobs:
       - name: Build image
         run: docker build -t ts-sandbox .
       - name: Launch container
-        run: docker run ts-sandbox
+        run: docker run ts-sandbox sleep 5
