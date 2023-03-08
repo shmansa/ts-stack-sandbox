@@ -10,3 +10,4 @@
 1. Build the docker image tagged `ts-sandbox` (see above)
 2. Write tests in `ModuleName.test.ts` test suite file convention
 3. Run with a volume to latest code and run the test script: `docker run -it ts-sandbox npm test`
+  * Or to bind latest code changes inside the script without rebuilding, add this option: `-v "$(pwd)":/sandbox` but you may need to run `npm install` first on your host machine to make sure `package-lock.json` is up to date
