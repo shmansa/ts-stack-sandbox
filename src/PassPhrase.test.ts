@@ -47,4 +47,23 @@ describe("PassPhrase tests", ()=> {
     let actual: boolean = myPhrase.has_mixed_case();
     expect(actual).toBe(false);
   });
+
+  test("has_mixed_case returns false for an empty phrase", () => {
+    let myPhrase: PassPhrase = new PassPhrase("");
+    let actual: boolean = myPhrase.has_mixed_case();
+    expect(actual).toBe(false);
+  });
+
+  test("has_mixed_case returns false for a phrase with only digits", () => {
+    let myPhrase: PassPhrase = new PassPhrase("1234567890");
+    let actual: boolean = myPhrase.has_mixed_case();
+    expect(actual).toBe(false);
+  });
+
+  test("has_mixed_case returns true for a phrase with both upper and lower case characters and digits", () => {
+    let myPhrase: PassPhrase = new PassPhrase("Th1sIsAT3st");
+    let actual: boolean = myPhrase.has_mixed_case();
+    expect(actual).toBe(true);
+  });
+
 })
