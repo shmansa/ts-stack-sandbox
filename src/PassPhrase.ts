@@ -47,11 +47,35 @@ export class PassPhrase {
     return true;
   }
 
-    // returns whether the phrase has both at least one upper-case letter and
-    // at least one lower-case letter
-    has_mixed_case(): boolean {
-        return false;
+  // returns whether the phrase has both at least one upper-case letter and
+  // at least one lower-case letter
+  has_mixed_case(): boolean {
+    let hasUpper = false;
+    let hasLower = false;
+
+    // iterate over each character in the phrase
+    for (let i = 0; i < this._phrase.length; i++) {
+      let phraseChar = this._phrase.charAt(i);
+
+      // check if the character is upper case
+      if (phraseChar.match(/[A-Z]/)) {
+        hasUpper = true;
+      }
+
+      // check if the character is lower case
+      if (phraseChar.match(/[a-z]/)) {
+        hasLower = true;
+      }
+
+      // if we have both upper and lower case characters, we can return early
+      if (hasUpper && hasLower) {
+        return true;
+      }
     }
+
+    // if we've made it this far, we didn't find both upper and lower case characters
+    return false;
+  }
 
     // determines how many times the same character is used at the beginning
     // of the phrase, before any other characters are used. The count should
