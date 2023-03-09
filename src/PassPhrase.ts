@@ -17,8 +17,35 @@ export class PassPhrase {
     // whether it is an exact match of the phrase besides all opposite case
     // alphabetic characters
     is_caps_locked(attempt: string): boolean {
-        return false;
+    // check for string length mismatch
+    if (this._phrase.length !== attempt.length) {
+      return false;
     }
+
+    // iterate over each character in the phrase and the attempt
+    for (let i = 0; i < this._phrase.length; i++) {
+      let phraseChar = this._phrase.charAt(i);
+      let attemptChar = attempt.charAt(i);
+
+      // if both characters are alphabetic and opposite case, continue to next iteration
+      if (
+        phraseChar.match(/[a-zA-Z]/) &&
+        attemptChar.match(/[a-zA-Z]/) &&
+        phraseChar.toLowerCase() === attemptChar.toLowerCase() &&
+        phraseChar !== attemptChar
+      ) {
+        continue;
+      }
+
+      // if characters do not match, return false
+      if (phraseChar !== attemptChar) {
+        return false;
+      }
+    }
+
+    // if all characters match, return true
+    return true;
+  }
 
     // returns whether the phrase has both at least one upper-case letter and
     // at least one lower-case letter
