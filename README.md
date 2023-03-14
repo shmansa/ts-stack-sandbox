@@ -11,3 +11,4 @@
 2. Write tests in `ModuleName.test.ts` test suite file convention
 3. Run with a volume to latest code and run the test script: `docker run -it ts-sandbox npm test`
     * Or to bind latest code changes inside the script without rebuilding: `docker run -v "$(pwd)/src":/sandbox/src -it ts-sandbox npm test`
+4. Inspect coverage data by opening `src/coverage/lcov-report/index.html`
