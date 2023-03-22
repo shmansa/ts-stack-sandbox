@@ -12,3 +12,9 @@
 3. Run with a volume to latest code and run the test script: `docker run -it ts-sandbox npm test`
     * Or to bind latest code changes inside the script without rebuilding: `docker run -v "$(pwd)/src":/sandbox/src -it ts-sandbox npm test`
 4. Inspect coverage data by opening `src/coverage/lcov-report/index.html`
+
+### Mutation Testing using Stryker
+
+1. Completing the above steps
+2. Invoke mutation testing: `docker run -v "$(pwd)/src":/sandbox/src -it ts-sandbox npm run mutate`
+3. Inspect results by opening `src/mutation/stryker.html`
