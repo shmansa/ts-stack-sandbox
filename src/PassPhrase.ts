@@ -37,8 +37,8 @@ export class PassPhrase {
         continue;
       }
 
-      // if characters do not match, return false
-      if (phraseChar !== attemptChar) {
+      // if characters do not match or the attempt character is capitalized when the phrase character is not, return false
+      if (phraseChar !== attemptChar || (phraseChar === attemptChar && phraseChar.toUpperCase() !== attemptChar)) {
         return false;
       }
     }
