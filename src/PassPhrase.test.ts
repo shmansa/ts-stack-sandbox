@@ -30,6 +30,54 @@ describe("PassPhrase tests", ()=> {
     expect(actual).toBe(true);
   });
   
+  test("is_caps_locked returns false for empty attempt string", () => {
+    // 1. set up the state
+    let myPhrase: PassPhrase = new PassPhrase("PaSsPhRaSe");
+    let attempt: string = "";
+
+    // 2. invoke action
+    let actual: boolean = myPhrase.is_caps_locked(attempt);
+
+    // 3. assert expected outcome
+    expect(actual).toBe(false);
+  });
+
+  test("is_caps_locked returns false for attempt with same case as phrase", () => {
+    // 1. set up the state
+    let myPhrase: PassPhrase = new PassPhrase("PaSsPhRaSe");
+    let attempt: string = "PassPhrase";
+
+    // 2. invoke action
+    let actual: boolean = myPhrase.is_caps_locked(attempt);
+
+    // 3. assert expected outcome
+    expect(actual).toBe(false);
+  });
+  
+  test("is_caps_locked returns false for attempt with extra non-alphabetic characters", () => {
+    // 1. set up the state
+    let myPhrase: PassPhrase = new PassPhrase("PaSsPhRaSe");
+    let attempt: string = "pAsS.PhRaSe!";
+
+    // 2. invoke action
+    let actual: boolean = myPhrase.is_caps_locked(attempt);
+
+    // 3. assert expected outcome
+    expect(actual).toBe(false);
+  });
+
+  test("is_caps_locked returns false for attempt with extra alphabetic characters", () => {
+    // 1. set up the state
+    let myPhrase: PassPhrase = new PassPhrase("PaSsPhRaSe");
+    let attempt: string = "pAsSpHrAsEx";
+
+    // 2. invoke action
+    let actual: boolean = myPhrase.is_caps_locked(attempt);
+
+    // 3. assert expected outcome
+    expect(actual).toBe(false);
+  });
+
   test("has_mixed_case returns false for a phrase with only upper case characters", () => {
     let myPhrase: PassPhrase = new PassPhrase("THISISATEST");
     let actual: boolean = myPhrase.has_mixed_case();
